@@ -66,7 +66,12 @@ Preetam Nandy, Luca Weihs, and Mathias Drton. Large-Sample Theory for the
 Bergsma-Dassios Sign Covariance. arXiv preprint arXiv:1602.04387. 2016.
 }
 \author{
-\strong{Maintainer}: Luca Weihs \email{lucaw@uw.edu}
+\strong{Maintainer}: Julian D. Karch \email{j.d.karch@fsw.leidenuniv.nl} (\href{https://orcid.org/0000-0002-1625-2822}{ORCID})
+
+Authors:
+\itemize{
+  \item Luca Weihs \email{lucaw@uw.edu}
+}
 
 Other contributors:
 \itemize{
