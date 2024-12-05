@@ -285,7 +285,7 @@ isProb <- function(prob) {
 #' @param probs1 a vector of probabilities corresponding to the (ordered)
 #'        support of X. That is if your first random variable has support
 #'        \eqn{u_1,...,u_n} then the ith entry of probs should be
-#'        eqn{P(X = u_i)}.
+#'        \eqn{P(X = u_i)}.
 #' @param probs2 just as probs1 but for the second random variable Y.
 #'
 #' @name pDisHoeffInd

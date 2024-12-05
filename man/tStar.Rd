@@ -4,9 +4,16 @@
 \alias{tStar}
 \title{Computing t*}
 \usage{
-tStar(x, y, vStatistic = FALSE, resample = FALSE, numResamples = 500,
-  sampleSize = min(length(x), 1000), method = "fastest",
-  slow = FALSE)
+tStar(
+  x,
+  y,
+  vStatistic = FALSE,
+  resample = FALSE,
+  numResamples = 500,
+  sampleSize = min(length(x), 1000),
+  method = "fastest",
+  slow = FALSE
+)
 }
 \arguments{
 \item{x}{A numeric vector of x values (length >= 4).}
