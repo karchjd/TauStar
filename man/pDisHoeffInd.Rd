@@ -7,7 +7,7 @@
 \alias{qDisHoeffInd}
 \title{Null asymptotic distribution of t* in the discrete case}
 \usage{
-pDisHoeffInd(x, probs1, probs2, lower.tail = T, error = 10^-5)
+pDisHoeffInd(x, probs1, probs2, lower.tail = TRUE, error = 10^-5)
 
 dDisHoeffInd(x, probs1, probs2, error = 10^-3)
 
