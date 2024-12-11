@@ -1,8 +1,5 @@
 ## Resubmission Notes
 
-This is a resubmission. In this version, I addressed Konstanze Lauseker's comments. Specifically, I have:
+This is a resubmission. In this version, I addressed Benjamin Altmann's comments. Specifically, I have:
 
-- Omitted the space in one of the DOIs.  
-- Replaced T/F with TRUE/FALSE.  
-- Added an explanation that the function `print.tstest` does not return anything.  
-- Removed the `\dontrun` tag.  
+- Remove the \dontrun{} tag in TauStar-package.Rd.

@@ -23,7 +23,6 @@
 #' Bergsma-Dassios Sign Covariance. arXiv preprint arXiv:1602.04387. 2016.
 #'
 #' @examples
-#' \dontrun{
 #' library(TauStar)
 #'
 #' # Compute t* for a concordant quadruple
@@ -57,7 +56,6 @@
 #' y <- y + x
 #' testResults <- tauStarTest(x, y)
 #' print(testResults$pVal) # small p-value
-#' }
 #'
 #' @importFrom Rcpp evalCpp
 #' @useDynLib TauStar

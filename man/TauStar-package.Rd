@@ -17,7 +17,6 @@ interested in performing tests of independence then see the function
 tauStarTest.
 }
 \examples{
-\dontrun{
 library(TauStar)
 
 # Compute t* for a concordant quadruple
@@ -51,7 +50,6 @@ print(testResults$pVal) # big p-value
 y <- y + x
 testResults <- tauStarTest(x, y)
 print(testResults$pVal) # small p-value
-}
 
 }
 \references{
