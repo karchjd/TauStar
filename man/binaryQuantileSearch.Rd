@@ -26,6 +26,6 @@ the quantile (within error).
 }
 \description{
 Computes the pth quantile of a cumulative distribution function using a
-simple binary serach algorithm. This can be extremely slow but has the
+simple binary search algorithm. This can be extremely slow but has the
 benefit of being trivial to implement.
 }

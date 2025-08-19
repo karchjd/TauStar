@@ -58,7 +58,7 @@
 #' print(testResults$pVal) # small p-value
 #'
 #' @importFrom Rcpp evalCpp
+#' @importFrom stats rchisq
 #' @useDynLib TauStar
-#' @import stats
 "_PACKAGE"
 #> [1] "_PACKAGE"

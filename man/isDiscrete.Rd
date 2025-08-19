@@ -2,18 +2,30 @@
 % Please edit documentation in R/Functions.R
 \name{isDiscrete}
 \alias{isDiscrete}
-\title{Determine if input data is discrete}
+\title{Heuristic check for discrete numeric data}
 \usage{
-isDiscrete(x)
+isDiscrete(
+  x,
+  tol = sqrt(.Machine$double.eps),
+  unique_ratio = 0.2,
+  max_levels = 10
+)
 }
 \arguments{
-\item{x}{a vector which should be determined if discrete or not.}
+\item{x}{Numeric vector.}
+
+\item{tol}{Relative tolerance for "integer-like" checks.}
+
+\item{unique_ratio}{Max ratio of unique values to n to still consider discrete (must be < 1).}
+
+\item{max_levels}{Max absolute number of unique values to still consider discrete.}
 }
 \value{
-the best judgement of whether or not the data was discrete
+TRUE/FALSE best-guess.
 }
 \description{
-Attempts to determine if the input data is from a discrete distribution. Will
-return true if the data type is of type integer or there are non-unique
-values.
+Assumes x is numeric, length(x) >= 4, and all values are finite and non-missing.
+}
+\details{
+Uses integer-within-tolerance and low unique-to-n with repetition (via unique ratio).
 }
