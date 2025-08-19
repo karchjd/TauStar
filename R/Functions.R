@@ -150,7 +150,7 @@ tStar <- function(x, y, vStatistic = FALSE, resample = FALSE,
 #' Quantiles of a distribution.
 #'
 #' Computes the pth quantile of a cumulative distribution function using a
-#' simple binary serach algorithm. This can be extremely slow but has the
+#' simple binary search algorithm. This can be extremely slow but has the
 #' benefit of being trivial to implement.
 #'
 #' @param pDistFunc a cumulative distribution function on the real numbers, it
@@ -541,21 +541,29 @@ print.tstest <- function(x, ...) {
   print(df)
 }
 
-#' Determine if input data is discrete
+#' Heuristic check for discrete numeric data
 #'
-#' Attempts to determine if the input data is from a discrete distribution. Will
-#' return true if the data type is of type integer or there are non-unique
-#' values.
+#' Assumes x is numeric, length(x) >= 4, and all values are finite and non-missing.
 #'
-#' @param x a vector which should be determined if discrete or not.
+#' Uses integer-within-tolerance and low unique-to-n with repetition (via unique ratio).
 #'
-#' @return the best judgement of whether or not the data was discrete
-isDiscrete <- function(x) {
-  if (is.integer(x) || (length(unique(x)) != length(x))) {
-    return(TRUE)
-  }
-  return(FALSE)
+#' @param x Numeric vector.
+#' @param tol Relative tolerance for "integer-like" checks.
+#' @param unique_ratio Max ratio of unique values to n to still consider discrete (must be < 1).
+#' @param max_levels Max absolute number of unique values to still consider discrete.
+#' @return TRUE/FALSE best-guess.
+isDiscrete <- function(x, tol = sqrt(.Machine$double.eps), unique_ratio = 0.2, max_levels = 10) {
+  # integer-like within tolerance
+  if (all(abs(x - round(x)) <= tol * pmax(1, abs(x)))) return(TRUE)
+
+  # few unique values relative to n (duplicates implied if unique_ratio < 1)
+  n <- length(x)
+  u <- length(unique(x))
+  if (u <= max_levels || (u / n) <= unique_ratio) return(TRUE)
+
+  FALSE
 }
+
 
 #' Is Vector Valid Data?
 #'
@@ -646,7 +654,7 @@ tauStarTest <- function(x, y, mode = "auto", resamples = 1000) {
 
   if (mode == "continuous") {
     if (xIsDis || yIsDis) {
-      stop("Input vectors to tauStarTest are have repeated entries or are of the integer type but the mode is set to continuous.")
+      warning("At least one input vector looks discrete but mode is set to continous")
     }
     toReturn$pVal <- 1 - pHoeffInd(n * toReturn$tStar)
   } else if (mode == "discrete") {
@@ -655,15 +663,20 @@ tauStarTest <- function(x, y, mode = "auto", resamples = 1000) {
     toReturn$pVal <- 1 - pDisHoeffInd(n * toReturn$tStar, probs1 = p, probs2 = q)
   } else if (mode == "mixed") {
     if (xIsDis && yIsDis) {
-      stop("Input vectors to tauStarTest both are discrete but 'mixed' mode was chosen instead of 'discrete'.\n")
+      warning(paste(
+        "Input vectors to tauStarTest both looks 'discrete'",
+        "but 'mixed' mode was chosen instead of 'discrete'",
+        "Will default to assuming x",
+        "is discrete and y continuous. \n"
+      ))
     } else if (!xIsDis && !yIsDis) {
       warning(paste(
-        "Neither vector input to tauStarTest has duplicate entries",
+        "Neither vector input to tauStarTest looks discrete",
         "but 'mixed' mode was selected. Will default to assuming x",
         "is discrete and y continuous. \n"
       ))
     }
-    if (xIsDis) {
+    if (xIsDis || (!xIsDis && !yIsDis)) {
       z <- x
       x <- y
       y <- z
