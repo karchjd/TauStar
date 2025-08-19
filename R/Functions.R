@@ -94,6 +94,11 @@ tStar <- function(x, y, vStatistic = FALSE, resample = FALSE,
   } else if (method == "fastest") {
     method <- "heller"
   }
+
+  if (!(method %in% c("heller", "weihs", "naive"))) {
+    stop("Invalid method argument")
+  }
+
   if (!is.numeric(x) || !is.numeric(y)) {
     stop("Input x and y to tStar must be numeric.")
   }
@@ -103,7 +108,7 @@ tStar <- function(x, y, vStatistic = FALSE, resample = FALSE,
   }
 
   if (length(x) != length(y) || length(x) < 4) {
-    stop("Input x and y to tStar are of the wrong length, they must both have equal length < 4.")
+    stop("Input x and y to tStar are of the wrong length, they must both have equal length >= 4.")
   }
   if (!is.logical(vStatistic) || length(vStatistic) != 1) {
     stop("Input parameter vStatistic into function tStar must be a logical TRUE/FALSE value.")
@@ -126,9 +131,6 @@ tStar <- function(x, y, vStatistic = FALSE, resample = FALSE,
   if (resample && vStatistic) {
     stop("Resampling is not currently implemented when computing V-statistics. Note that you probably don't want to compute the V-statistic via resampling as the size of the bias would depend on the size of subsets chosen independent of the number of resamples.")
   }
-  if (!(method %in% c("fastest", "heller", "weihs", "naive"))) {
-    stop("Invalid method argument")
-  }
 
   if (resample) {
     return(TStarFastResampleRCPP(x, y, numResamples, sampleSize))
@@ -143,7 +145,8 @@ tStar <- function(x, y, vStatistic = FALSE, resample = FALSE,
     } else {
       return(TStarWeihsEtAlRCPP(x, y))
     }
-  } else { # method must be "heller"
+  } else {
+    stopifnot(method == "heller")
     if (vStatistic) {
       return(VTStarHellerAndHellerRCPP(x, y))
     } else {
