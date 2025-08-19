@@ -113,6 +113,9 @@ tStar <- function(x, y, vStatistic = FALSE, resample = FALSE,
   if (!is.logical(vStatistic) || length(vStatistic) != 1) {
     stop("Input parameter vStatistic into function tStar must be a logical TRUE/FALSE value.")
   }
+  if (!all(is.finite(x)) || !all(is.finite(y))) {
+    stop("Input x and y to tStar must be finite.")
+  }
   if (!is.logical(slow) || length(slow) != 1) {
     stop("Input parameter slow into function tStar must be a logical TRUE/FALSE value.")
   }
@@ -545,7 +548,7 @@ print.tstest <- function(x, ...) {
     df <- cbind(df, round(x$pVal, 5))
     colnames(df) <- c("t* value", "Perm. p-val")
   }
-  row.names(df) <- ""
+  rownames(df) <- NULL
   print(df)
 }
 
