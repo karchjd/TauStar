@@ -107,7 +107,7 @@ test_that("tauStarTest with mixed data.", {
   expect_warning(tauStarTest(x, y, mode = "mixed"))
 
   expect_error(tauStarTest(rnorm(10), rnorm(9), mode = "mixed"))
-  expect_error(tauStarTest(c(1, 2, 3, 4, 1), c(1, 2, 3, 4, 1), mode = "mixed"))
+  expect_warning(tauStarTest(c(1, 2, 3, 4, 1), c(1, 2, 3, 4, 1), mode = "mixed"))
 })
 
 test_that("tauStarTest with a permutation test.", {
