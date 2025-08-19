@@ -29,7 +29,7 @@
 #'        otherwise will compute the U-Statistic version of t*. Default is to compute
 #'        the U-statistic.
 #' @param resample If TRUE then will compute an approximation of t* using a
-#'        subsettting approach: samples of size sampleSize are taken from the data
+#'        subsetting approach: samples of size sampleSize are taken from the data
 #'        numResample times, t* is computed on each subsample, and all subsample t*
 #'        values are then averaged. Note that this only works when vStatistic ==
 #'        FALSE, in general you probably don't want to compute the V-statistic via
@@ -46,7 +46,7 @@
 #'        The options are "heller" described in Heller and Heller (2016), "weihs",
 #'        using the algorithm from Weihs et al. (2015), and "naive" using a naive
 #'        algorithm.
-#' @param slow a deprecated option kept for backwards compatability. If TRUE
+#' @param slow a deprecated option kept for backwards compatibility If TRUE
 #'        then will override the method parameter and compute the t* statistic
 #'        using a naive O(n^4) algorithm.
 #'
@@ -162,7 +162,7 @@ tStar <- function(x, y, vStatistic = FALSE, resample = FALSE,
 #' benefit of being trivial to implement.
 #'
 #' @param pDistFunc a cumulative distribution function on the real numbers, it
-#'        should take a single argument x and return the cumualtive distribution
+#'        should take a single argument x and return the cummulative distribution
 #'        function evaluated at x.
 #' @param p the quantile \eqn{p\in[0,1]}
 #' @param lastLeft binary search works by continuously decreasing the search
@@ -336,7 +336,7 @@ dDisHoeffInd <- function(x, probs1, probs2, error = 10^-3) {
   }
   if (any(probs1 == 1) || any(probs2 == 1)) {
     stop(paste(
-      "since length(probs1) == 1 or length(probs2) == 1 resulting",
+      "since probs1 or probs2 contains a 1 the resulting",
       "distribution is degenerate and thus has no density."
     ))
   }
@@ -374,7 +374,7 @@ rDisHoeffInd <- function(n, probs1, probs2) {
 #' @export
 qDisHoeffInd <- function(p, probs1, probs2, error = 10^-4) {
   if (!isProbVector(probs1) || !isProbVector(probs2)) {
-    stop("either probs1 or probs2 in pqisHoeffInd is not a probability vector.")
+    stop("either probs1 or probs2 in qDisHoeffInd is not a probability vector.")
   }
   if (!isProb(p)) {
     stop("probability p must be length 1 and in [0,1].")
@@ -487,7 +487,7 @@ rMixHoeffInd <- function(n, probs, error = 10^-8) {
 #' @export
 qMixHoeffInd <- function(p, probs, error = 10^-4) {
   if (!isProbVector(probs)) {
-    stop("probs in dMixHoeffInd is not a probability vector.")
+    stop("probs in qMixHoeffInd is not a probability vector.")
   }
   if (!isProb(p)) {
     stop("probability p must be length 1 and in [0,1].")
@@ -589,7 +589,7 @@ isValidDataVector <- function(x) {
 #' Performs a (consistent) test of independence between two input vectors using
 #' the asymptotic (or permutation based) distribution of the test statistic t*.
 #' The asymptotic results hold in the case that x is generated from either a
-#' discrete or continous distribution and similarly for y (in particular it is
+#' discrete or continuous distribution and similarly for y (in particular it is
 #' allowed for one to be continuous while the other is discrete). The asymptotic
 #' distributions were computed in Nandy, Weihs, and Drton (2016)
 #' <http://arxiv.org/abs/1602.04387>.
@@ -662,7 +662,7 @@ tauStarTest <- function(x, y, mode = "auto", resamples = 1000) {
 
   if (mode == "continuous") {
     if (xIsDis || yIsDis) {
-      warning("At least one input vector looks discrete but mode is set to continous")
+      warning("At least one input vector looks discrete but mode is set to continuous")
     }
     toReturn$pVal <- 1 - pHoeffInd(n * toReturn$tStar)
   } else if (mode == "discrete") {
@@ -672,7 +672,7 @@ tauStarTest <- function(x, y, mode = "auto", resamples = 1000) {
   } else if (mode == "mixed") {
     if (xIsDis && yIsDis) {
       warning(paste(
-        "Input vectors to tauStarTest both looks 'discrete'",
+        "Input vectors to tauStarTest both look 'discrete'",
         "but 'mixed' mode was chosen instead of 'discrete'",
         "Will default to assuming x",
         "is discrete and y continuous. \n"
