@@ -97,6 +97,11 @@ tStar <- function(x, y, vStatistic = FALSE, resample = FALSE,
   if (!is.numeric(x) || !is.numeric(y)) {
     stop("Input x and y to tStar must be numeric.")
   }
+
+  if(any(is.na(x)) || any(is.na(y))) {
+    stop("Input x and y to tStar must not contain NA values.")
+  }
+
   if (length(x) != length(y) || length(x) < 4) {
     stop("Input x and y to tStar are of the wrong length, they must both have equal length < 4.")
   }
