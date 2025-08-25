@@ -1,4 +1,10 @@
-# TauStar 1.1.5
+# TauStar 1.1.8
+* Improved discreteness check for mode = "auto"
+* Now imports less unneeded things from other packages into NAMESPACE
+* Added codecov for test coverage
+
+
+# TauStar 1.1.7
 * Fixed a bug introduced by Rcpp that caused the package to be archived
 * Added a GitHub Action to automatically check after each push
 * Updated the DESCRIPTION file
