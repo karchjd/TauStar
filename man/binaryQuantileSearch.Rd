@@ -8,7 +8,7 @@ binaryQuantileSearch(pDistFunc, p, lastLeft, lastRight, error = 10^-4)
 }
 \arguments{
 \item{pDistFunc}{a cumulative distribution function on the real numbers, it
-should take a single argument x and return the cumualtive distribution
+should take a single argument x and return the cummulative distribution
 function evaluated at x.}
 
 \item{p}{the quantile \eqn{p\in[0,1]}}

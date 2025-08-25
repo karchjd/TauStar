@@ -25,7 +25,7 @@ otherwise will compute the U-Statistic version of t*. Default is to compute
 the U-statistic.}
 
 \item{resample}{If TRUE then will compute an approximation of t* using a
-subsettting approach: samples of size sampleSize are taken from the data
+subsetting approach: samples of size sampleSize are taken from the data
 numResample times, t* is computed on each subsample, and all subsample t*
 values are then averaged. Note that this only works when vStatistic ==
 FALSE, in general you probably don't want to compute the V-statistic via
@@ -46,7 +46,7 @@ The options are "heller" described in Heller and Heller (2016), "weihs",
 using the algorithm from Weihs et al. (2015), and "naive" using a naive
 algorithm.}
 
-\item{slow}{a deprecated option kept for backwards compatability. If TRUE
+\item{slow}{a deprecated option kept for backwards compatibility If TRUE
 then will override the method parameter and compute the t* statistic
 using a naive O(n^4) algorithm.}
 }

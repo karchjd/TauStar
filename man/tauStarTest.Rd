@@ -31,7 +31,7 @@ a list with class "tstest" recording the outcome of the test.
 Performs a (consistent) test of independence between two input vectors using
 the asymptotic (or permutation based) distribution of the test statistic t*.
 The asymptotic results hold in the case that x is generated from either a
-discrete or continous distribution and similarly for y (in particular it is
+discrete or continuous distribution and similarly for y (in particular it is
 allowed for one to be continuous while the other is discrete). The asymptotic
 distributions were computed in Nandy, Weihs, and Drton (2016)
 <http://arxiv.org/abs/1602.04387>.
