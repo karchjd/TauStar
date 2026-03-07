@@ -1,3 +1,5 @@
+# TauStar 1.1.9
+
 # TauStar 1.1.8
 * Improved discreteness check for mode = "auto"
 * Now imports less unneeded things from other packages into NAMESPACE
